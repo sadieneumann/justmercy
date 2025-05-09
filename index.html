@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Just Mercy</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.timeline .event {
+				margin-bottom: 20px;
+				border-left: 2px solid #333;
+				padding-left: 20px;
+				position: relative;
+			}
+			.timeline .event:before {
+				content: '';
+				width: 10px;
+				height: 10px;
+				background: #333;
+				border-radius: 50%;
+				position: absolute;
+				left: -6px;
+				top: 5px;
+			}
+			.quiz .question {
+				margin-bottom: 20px;
+			}
+			.quiz ul {
+				list-style-type: none;
+				padding-left: 0;
+			}
+			.quiz li {
+				margin-bottom: 10px;
+			}
+			.content-wrapper {
+				display: flex;
+				align-items: flex-start;
+			}
+			.content-text {
+				flex: 1;
+				padding-right: 20px;
+			}
+			.content-image {
+				flex: 0 0 300px;
+				text-align: center;
+			}
+			.content-image img {
+				max-width: 100%;
+				height: auto;
+			}
+			.image-caption {
+				margin-top: 10px;
+				font-style: italic;
+			}
+			#quizResults {
+				margin-top: 20px;
+				padding: 15px;
+				background-color: #f5f5f5;
+				border-radius: 5px;
+			}
+			#submitQuiz {
+				padding: 10px 20px;
+				background-color: #4CAF50;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			#submitQuiz:hover {
+				background-color: #45a049;
+			}
+		</style>
+	</head>
+	<body class="single is-preload">
+		<!-- Wrapper -->
+		<div id="wrapper">
+			<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">Just Mercy</a></h1>
+				<nav class="links">
+					<ul>
+						<li><a href="#" data-page="14th">The 14th Amendment</a></li>
+						<li><a href="#" data-page="success">Success Stories</a></li>
+						<li><a href="#" data-page="quiz">Justice or Injustice?</a></li>
+						<li><a href="#" data-page="citations">Citations</a></li>
+					</ul>
+				</nav>
+				<nav class="main">
+					<ul>
+						<li class="search">
+							<a class="fa-search" href="#search">Search</a>
+							<form id="search" method="get" action="#">
+								<input type="text" name="query" placeholder="Search" />
+							</form>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+			<div id="main">
+				<!-- Post -->
+				<article class="post" id="content">
+					<!-- Content will be loaded here -->
+				</article>
+			</div>
+
+			<!-- Footer -->
+			<section id="footer">
+				<p class="copyright">&copy; Just Mercy. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+			</section>
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const contentArea = document.getElementById('content');
+				const navLinks = document.querySelectorAll('nav.links a');
+				const mainTitle = document.querySelector('h1 a');
+
+				// Default content
+				const defaultContent = `
+					<div class="content-wrapper">
+						<div class="content-text">
+							<h2>To what extent is equal protection under the law a component of a functional community?</h2>
+							<p>Equal Protection under the law is crucial to a functional community. In Just Mercy, Stevenson talks about how the absence of just legal protections has harbored systematic injustice, especially for marginalized people, such as poor, black people, and minors. Stevenson's legal work, especially in his defence of Walter McMillian, a wrongfully convicted poor, black man, shows how unequal legal treatment leads to great suffering and degradation of the whole community. Without fair legal treatment, trust in government erodes, people are less inclined to respect and participate in government, and justice and a strong community are not upheld. Functional communities require a formal and just structure of law, but also unbiased law enforcement. The law should work for the citizens, not against them.</p>
+							<p>Stevenson has worked to create a huge impact on the legal system, founding EJI, building museums, and fighting for the individual. Equal protection under the law ensures that all people have access to justice, thereby strengthening and building democratic values, public safety, trust, and a strong community. Communities will thrive when justice is accessible, laws are enforced with grace and care, and everyone is equally protected and safe. Equal protection is more than a law, it's a core value and at the root of any moral, safe, and functional community.</p>
+							<p>Bryan Stevenson's career highlights how important and impactful equal protection and treatment are to community strength. His fight for justice shows that society can't function if some people are treated as less or inferior. Instead, that creates panic and unrest. The 14th Amendment promises that no person shall be denied equal protection under the law. This amendment has undoubtedly been broken, only to be fought for by Stevenson. While it might still be aspirational for everyone to be equally protected and treated under the law, it is a future we are heading towards. Just Mercy describes the consequences of legal inequality and mistreatment by showing how public action, legal reform, and cultural change can reverse the court system, a path forward is being paved. A truly functional society is one where everyone is part of the community and is treated as an equal in it. It is a moral and civic duty to create a thriving society with equal protection under the law, free of discrimination.</p>
+						</div>
+					</div>
+				`;
+
+				function loadContent(page) {
+					let content = '';
+					switch(page) {
+						case '14th':
+							content = `
+								<header>
+									<div class="title">
+										<h2>The 14th Amendment</h2>
+									</div>
+								</header>
+								<p>The 14th Amendment, added to the Constitution in 1868, says that no state shall "deny to any person within its jurisdiction the equal protection of the laws.". The 14th Amendment was initially passed to protect the formerly enslaved, but it is now applicable to many minorities and people facing prejudice. Equal protection means that the law must treat everyone equally under the law, regardless of race, background, wealth, or anything else. For this reason, schools had to integrate and abide by the ruling of Brown v. Board of Education, and discrimination in the courts can be challenged. In theory, the 14th Amendment guarantees fairness for everyone, but in practice, it frequently fails to protect. This has been seen time and time again with people being unfairly sentenced because of racism and bias. Poor people of color often face harsher sentences and are more likely to be arrested just because of their skin tone.</p>
+								<p>Bryan Stevenson, through his work with EJI, found that the 14th Amendment is often broken, and he works to fix it one case at a time. Walter McMillian, an unjustly sentenced man, was sentenced to death on false testimony because of racist officials in his area. They were pressured to convict someone, and in choosing McMillian, somewhat randomly, the 14th Amendment was broken. If he had had equal protection under the law, he wouldn't have had to go to court and would have never been convicted. Many others have similar stories, simply because someone is poor and defenseless, or even a minor, doesn't make it better to arrest them. It is a breach of freedom and justice, and a truly functional community depends on every single person being treated equally under the law.</p>
+							`;
+							break;
+						case 'success':
+							content = `
+								<header>
+									<div class="title">
+										<h2>Success Stories</h2>
+									</div>
+								</header>
+								<p><i>Walter McMillian</i></p>
+								<p>Walter McMillian was a black man who was wrongfully convicted of murder and sentenced to death. He was accused of murdering a white woman in Alabama, and despite having several witnesses confirming that he was at a church fish fry, he went to jail. McMillian was framed based on false and corrupted testimony and extreme racial bias. Bryan Stevenson worked on this case and found evidence proving McMillian's innocence. In 1993, McMillian was released after having spent 6 years on death row.</p>
+								<p><i>Trina Garnett</i></p>
+								<p>Trina Garnett was sentenced to life in prison (without possibility of parole) when she was 14 for accidentally starting a house fire that resulted in the death of two people. Garnett had been abused her whole life and was mentally ill, but was still tried as an adult. Stevenson, fighting the concept that children could be tried and sentenced like adults, argued that children should have opportunities for rehabilitation. He eventually worked on Graham v. Florida in 2010 and Miller v. Alabama in 2012, banning mandatory life in prison without parole for minors. Garnett, unfortunately, spent 40 years in prison before she was released.</p>
+								<p><i>Anthony Ray Hinton</i></p>
+								<p>Anthony Ray Hinton spent 30 years on death row after being wrongfully convicted of 2 murders in Alabama. Hinton was defended by an attorney who didn't care much or believe he was innocent, and the ballistic evidence available was never used in the trial. Stevenson was later able to have the bullet tested from the crime and proved that it didn't match the weapon Hinton owned. Stevenson took the case to the Supreme Court, where Hinton was freed in 2015.</p>
+								<p><i>Joe Sullivan</i></p>
+								<p>Joe Sullivan was sentenced to life without parole when he was only 13 for sexual assault in Florida. There was no physical evidence linking Sullivan to the crime, yet he was still sentenced. This case was also taken to the Supreme Court, where Steven argued that his punishment violated the 8th Amendment. Stevenson cited that Sullivan's punishment could be classified as cruel and unusual. In 2010, in the case Graham v. Florida, it was ruled that life without parole for non-homicidal cases committed by minors was unconstitutional. Sullivan had to serve 25 years in prison before he was released in 2017.</p>
+							`;
+							break;
+						case 'quiz':
+							content = `
+								<header>
+									<div class="title">
+										<h2>Justice or Injustice?</h2>
+									</div>
+								</header>
+								<div class="quiz">
+									<div class="question">
+										<h3>Scenario 1: A 14-year-old boy is tried as an adult and sentenced to life without parole for stealing a jacket.</h3>
+										<ul>
+											<li><input type="radio" name="q1" id="q1a" value="Justice"><label for="q1a">Justice</label></li>
+											<li><input type="radio" name="q1" id="q1b" value="Injustice"><label for="q1b">Injustice</label></li>
+										</ul>
+										<p>Explanation: Injustice. This violates both the 8th and 14th Amendments. Just Mercy features children in this exact situation—extreme punishment without consideration of age, background, or capacity for change is not equal justice.</p>
+									</div>
+									<div class="question">
+										<h3>Scenario 2: Two people commit the same crime. One hires a private lawyer and gets probation. The other, who can't afford a lawyer, is sentenced to 10 years in prison.</h3>
+										<ul>
+											<li><input type="radio" name="q2" id="q2a" value="Justice"><label for="q2a">Justice</label></li>
+											<li><input type="radio" name="q2" id="q2b" value="Injustice"><label for="q2b">Injustice</label></li>
+										</ul>
+										<p>Explanation: Injustice. Equal protection means fair treatment regardless of wealth. The justice system should not give better outcomes to people who can pay more.</p>
+									</div>
+									<div class="question">
+										<h3>Scenario 3: A Black man is convicted of murder by an all-white jury, even though strong evidence shows he is innocent.</h3>
+										<ul>
+											<li><input type="radio" name="q3" id="q3a" value="Justice"><label for="q3a">Justice</label></li>
+											<li><input type="radio" name="q3" id="q3b" value="Injustice"><label for="q3b">Injustice</label></li>
+										</ul>
+										<p>Explanation: Injustice. This is a clear violation of equal protection. In Just Mercy, Walter McMillian faced this exact injustice—racial bias in juries undermines fairness.</p>
+									</div>
+									<div class="question">
+										<h3>Scenario 4: A person with an intellectual disability is sentenced to death.</h3>
+										<ul>
+											<li><input type="radio" name="q4" id="q4a" value="Justice"><label for="q4a">Justice</label></li>
+											<li><input type="radio" name="q4" id="q4b" value="Injustice"><label for="q4b">Injustice</label></li>
+										</ul>
+										<p>Explanation: Injustice. The Supreme Court has ruled that executing people with intellectual disabilities is unconstitutional. This is unequal and cruel punishment—Just Mercy fights against it.</p>
+									</div>
+									<div class="question">
+										<h3>Scenario 5: A police officer arrests two people for the same offense but only charges one because of their immigration status.</h3>
+										<ul>
+											<li><input type="radio" name="q5" id="q5a" value="Justice"><label for="q5a">Justice</label></li>
+											<li><input type="radio" name="q5" id="q5b" value="Injustice"><label for="q5b">Injustice</label></li>
+										</ul>
+										<p>Explanation: Injustice. Equal protection means everyone should be treated the same under the law, no matter their background or citizenship.</p>
+									</div>
+								</div>
+								<button id="submitQuiz">Submit Quiz</button>
+								<div id="quizResults"></div>
+							`;
+							break;
+						case 'citations':
+							content = `
+								<header>
+									<div class="title">
+										<h2>Citations</h2>
+									</div>
+								</header>
+								<p>14th Amendment to the U.S. Constitution: Civil Rights (1868)." National Archives and Records Administration, National Archives and Records Administration, www.archives.gov/milestone-documents/14th-amendment. Accessed 9 May 2025.</p>
+								<p>Bennett, Geoff, et al. "Stevenson Reflects on Inequities in Justice System 10 Years after Release of 'Just Mercy.'" PBS, Public Broadcasting Service, 11 Dec. 2024, www.pbs.org/newshour/show/stevenson-reflects-on-inequities-in-justice-system-10-years-after-release-of-just-mercy.</p>
+								<p>"Just Mercy by Bryan Stevenson: Bestselling Book and Adapted Film." Just Mercy, 3 Sept. 2019, justmercy.eji.org/.</p>
+								<p>"Meet the Winners: Bryan Stevenson." Juvenile Law Center, jlc.org/news/meet-winners-bryan-stevenson. Accessed 9 May 2025.</p>
+							`;
+							break;
+						default:
+							content = defaultContent;
+					}
+					contentArea.innerHTML = content;
+
+					// Set up quiz submission if on quiz page
+					if (page === 'quiz') {
+						const submitButton = document.getElementById('submitQuiz');
+						if (submitButton) {
+							submitButton.addEventListener('click', calculateQuizResults);
+						}
+					}
+				}
+
+				function calculateQuizResults() {
+					const questions = ['q1', 'q2', 'q3', 'q4', 'q5'];
+					let correctAnswers = 0;
+					let totalQuestions = questions.length;
+					
+					questions.forEach(q => {
+						const selected = document.querySelector(`input[name="${q}"]:checked`);
+						if (selected && selected.value === 'Injustice') {
+							correctAnswers++;
+						}
+					});
+
+					const percentage = (correctAnswers / totalQuestions) * 100;
+					let message = '';
+					
+					if (percentage === 100) {
+						message = "Perfect! You have a strong understanding of equal protection under the law.";
+					} else if (percentage >= 80) {
+						message = "Great job! You understand most concepts of equal protection.";
+					} else if (percentage >= 60) {
+						message = "Good effort! You're on your way to understanding equal protection.";
+					} else {
+						message = "Keep learning! Understanding equal protection is crucial for a just society.";
+					}
+
+					document.getElementById('quizResults').innerHTML = `
+						<p>You got ${correctAnswers} out of ${totalQuestions} correct (${percentage}%)</p>
+						<p>${message}</p>
+					`;
+				}
+
+				// Event Listeners
+				mainTitle.addEventListener('click', function(e) {
+					e.preventDefault();
+					loadContent('');
+				});
+
+				navLinks.forEach(link => {
+					link.addEventListener('click', function(e) {
+						e.preventDefault();
+						const page = this.getAttribute('data-page');
+						loadContent(page);
+					});
+				});
+
+				// Load default content
+				loadContent('');
+			});
+		</script>
+	</body>
+</html>
